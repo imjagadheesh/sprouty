@@ -578,6 +578,11 @@ a.card:focus-visible .card-cta {
     grid-template-columns: 1fr;
     gap: 24px;
   }
+
+  .jumpnav .wrap {
+    overflow-x: visible;
+    flex-wrap: wrap;
+  }
 }
 
 @media (max-width: 480px) {
