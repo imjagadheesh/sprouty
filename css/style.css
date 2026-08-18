@@ -1,0 +1,596 @@
+/* ============================================================
+   Sprouty — design tokens
+   Identity: seed-packet / kraft-paper packaging label.
+   The QR code lives on a physical box, so the whole site borrows
+   the visual language of that box: kraft paper, ink stamps,
+   perforated tear-edges, stencil-numbered lots.
+   ============================================================ */
+
+:root {
+  /* color */
+  --kraft: #1ecf5529;      /* main page / hero background */
+  --kraft-deep: #c9dec9;   /* light-green sections */
+  --paper-light: #ffffff;  /* card / header / input bg */
+  --ink: #60777c;          /* primary body text */
+  --ink-soft: #8a9a98;     /* secondary / muted / placeholder text */
+  --moss: #7eb693;         /* primary green: links, primary icons, logo */
+  --moss-dark: #284c5c;    /* dark blue-green: headings, important icons, link hover, badge/nav text */
+  --sprout: #7eb693;       /* icon accent, aliased to primary green */
+  --sprout-light: #c9dec9; /* light green: badge/tag bg, input borders */
+  --stamp: #284c5c;        /* "coming soon" badge text/border */
+  --line: #dde7df;         /* card / input borders */
+  --btn-primary-bg: #f7d568;
+  --btn-primary-text: #284c5c;
+  --btn-primary-hover-bg: #ebc556;
+
+  /* type */
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", "Courier New", monospace;
+
+  --container: 1080px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--kraft);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* subtle kraft-paper texture via layered gradients, no image assets */
+body {
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.25), transparent 40%),
+    radial-gradient(circle at 80% 60%, rgba(0, 0, 0, 0.03), transparent 45%);
+  background-attachment: fixed;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  color: var(--moss-dark);
+  margin: 0 0 0.4em;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: inherit;
+}
+
+.wrap {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* --- kicker / stamp labels --- */
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--moss);
+}
+
+.kicker::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--sprout);
+  flex-shrink: 0;
+}
+
+/* --- header --- */
+.site-header {
+  background: var(--paper-light);
+  border-bottom: 1px solid var(--line);
+}
+
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  gap: 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.35rem;
+  color: var(--moss);
+}
+
+.brand-logo {
+  height: 34px;
+  width: auto;
+  flex-shrink: 0;
+}
+
+.header-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--moss);
+  border-bottom: 1px solid transparent;
+}
+
+.back-link:hover,
+.back-link:focus-visible {
+  color: var(--moss-dark);
+  border-color: var(--moss-dark);
+}
+
+/* --- focus visibility --- */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--moss-dark);
+  outline-offset: 3px;
+}
+
+/* --- hero --- */
+.hero {
+  padding: 72px 0 56px;
+}
+
+.hero .wrap {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  line-height: 1.06;
+  max-width: 12ch;
+}
+
+.hero p.lede {
+  font-size: 1.08rem;
+  color: var(--ink);
+  max-width: 46ch;
+  margin-top: 18px;
+}
+
+.hero-art {
+  display: flex;
+  justify-content: center;
+}
+
+.hero-art svg {
+  width: min(100%, 320px);
+  height: auto;
+}
+
+/* growth wobble on the hero mark, off by default reduced-motion */
+.hero-art .shoot {
+  transform-origin: bottom center;
+  animation: sway 6s ease-in-out infinite;
+}
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-1.5deg); }
+  50% { transform: rotate(1.5deg); }
+}
+
+/* --- section label row --- */
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.section-head h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+/* --- product grid --- */
+.products {
+  padding: 8px 0 80px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.card {
+  position: relative;
+  background: var(--paper-light);
+  border-radius: 4px;
+  padding: 28px 24px 24px;
+  text-decoration: none;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 220px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  border: 1px solid var(--line);
+}
+
+/* perforated tear-edge along the bottom of every card, the site's
+   recurring signature motif borrowed from a seed-packet flap */
+.card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 10px;
+  background-image: radial-gradient(circle, var(--kraft) 2.6px, transparent 2.7px);
+  background-size: 16px 16px;
+  background-position: 8px center;
+}
+
+a.card:hover,
+a.card:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--moss-dark);
+  box-shadow: 0 10px 24px rgba(96, 119, 124, 0.14);
+}
+
+a.card:hover .card-cta,
+a.card:focus-visible .card-cta {
+  color: var(--moss-dark);
+}
+
+.card-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 2px;
+}
+
+.card p {
+  color: var(--ink);
+  font-size: 0.94rem;
+  margin-bottom: 0;
+}
+
+.card-cta {
+  margin-top: auto;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--moss);
+  padding-top: 12px;
+}
+
+.card.is-soon {
+  color: var(--ink-soft);
+  cursor: default;
+  opacity: 0.85;
+}
+
+.card.is-soon .card-cta {
+  color: var(--ink-soft);
+}
+
+.stamp {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: var(--sprout-light);
+  border: 1.5px solid var(--stamp);
+  color: var(--stamp);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 3px;
+  transform: rotate(6deg);
+}
+
+/* --- footer --- */
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 28px 0;
+}
+
+.site-footer .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+
+/* ============================================================
+   Moong recipe page
+   ============================================================ */
+
+.page-intro {
+  padding: 44px 0 8px;
+}
+
+.page-intro h1 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  max-width: 16ch;
+}
+
+.page-intro p.lede {
+  color: var(--ink);
+  max-width: 56ch;
+  font-size: 1.05rem;
+}
+
+/* quick-jump strip */
+.jumpnav {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 12px 0;
+  margin: 24px 0 8px;
+}
+
+.jumpnav .wrap {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  padding-bottom: 2px;
+}
+
+.jumpnav a {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--moss-dark);
+  background: var(--paper-light);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 7px 14px 7px 10px;
+  scroll-snap-align: start;
+}
+
+.jumpnav a:hover,
+.jumpnav a:focus-visible {
+  color: var(--moss);
+  background: var(--sprout-light);
+  border-color: var(--moss);
+}
+
+.jumpnav .num {
+  font-weight: 700;
+  color: var(--sprout);
+}
+
+/* recipe sections */
+.recipe {
+  padding: 56px 0;
+  border-bottom: 1px dashed var(--line);
+  scroll-margin-top: 64px;
+}
+
+.recipe:nth-of-type(odd) {
+  background: white;
+}
+
+.recipe:nth-of-type(even) {
+  background: white;
+}
+
+.recipe-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.recipe-icon {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--paper-light);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.recipe-icon svg {
+  width: 30px;
+  height: 30px;
+}
+
+.recipe-head .kicker {
+  margin-bottom: 6px;
+}
+
+.recipe-head h2 {
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+}
+
+.recipe-body {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 40px;
+}
+
+.recipe-body h3 {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 14px;
+}
+
+.ingredients ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.ingredients li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 0.96rem;
+}
+
+.ingredients li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 7px;
+  height: 7px;
+  background: var(--sprout);
+  border-radius: 1px;
+  transform: rotate(45deg);
+}
+
+.method ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.method li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 34px;
+  font-size: 0.98rem;
+}
+
+.method li::before {
+  content: counter(step, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: -1px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--moss);
+  border: 1px solid var(--moss);
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+
+@media (max-width: 780px) {
+  .hero .wrap {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .hero-art {
+    order: -1;
+  }
+
+  .hero-art svg {
+    width: 200px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .recipe-body {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-header .wrap {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .hero {
+    padding: 44px 0 36px;
+  }
+
+  .recipe {
+    padding: 40px 0;
+  }
+}
