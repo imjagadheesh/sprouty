@@ -1,0 +1,13 @@
+.git
+.gitignore
+.dockerignore
+Dockerfile*
+compose*.yml
+compose*.yaml
+README.md
+.env
+.env.*
+.idea
+.vscode
+*.tmp
+*.swp
