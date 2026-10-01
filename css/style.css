@@ -8,20 +8,20 @@
 
 :root {
   /* color */
-  --kraft: #1ecf5529;      /* main page / hero background */
-  --kraft-deep: #c9dec9;   /* light-green sections */
-  --paper-light: #ffffff;  /* card / header / input bg */
-  --ink: #60777c;          /* primary body text */
-  --ink-soft: #8a9a98;     /* secondary / muted / placeholder text */
-  --moss: #7eb693;         /* primary green: links, primary icons, logo */
-  --moss-dark: #284c5c;    /* dark blue-green: headings, important icons, link hover, badge/nav text */
-  --sprout: #7eb693;       /* icon accent, aliased to primary green */
-  --sprout-light: #c9dec9; /* light green: badge/tag bg, input borders */
-  --stamp: #284c5c;        /* "coming soon" badge text/border */
-  --line: #dde7df;         /* card / input borders */
-  --btn-primary-bg: #f7d568;
-  --btn-primary-text: #284c5c;
-  --btn-primary-hover-bg: #ebc556;
+  --kraft: #fcf8e9;        /* main page / hero background */
+  --kraft-deep: #e8ecc6;   /* light-green sections */
+  --paper-light: #fffcf2;  /* card / header / input bg */
+  --ink: #20251c;          /* primary body text */
+  --ink-soft: #59634b;     /* secondary / muted / placeholder text */
+  --moss: #155b16;         /* primary green: headings, links, icons, logo */
+  --moss-dark: #0d4612;    /* dark green: hover and focus states */
+  --sprout: #155b16;       /* icon accent, aliased to primary green */
+  --sprout-light: #e8ecc6; /* light green: badge/tag bg, input borders */
+  --stamp: #155b16;        /* "coming soon" badge text/border */
+  --line: #cdd5af;         /* card / input borders */
+  --btn-primary-bg: #155b16;
+  --btn-primary-text: #fffcf2;
+  --btn-primary-hover-bg: #0d4612;
 
   /* type */
   --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
@@ -70,7 +70,7 @@ body {
 
 h1, h2, h3 {
   font-family: var(--font-display);
-  color: var(--moss-dark);
+  color: var(--moss);
   margin: 0 0 0.4em;
   letter-spacing: -0.01em;
 }
@@ -280,7 +280,7 @@ a.card:hover,
 a.card:focus-visible {
   transform: translateY(-3px);
   border-color: var(--moss-dark);
-  box-shadow: 0 10px 24px rgba(96, 119, 124, 0.14);
+  box-shadow: 0 10px 24px rgba(21, 91, 22, 0.14);
 }
 
 a.card:hover .card-cta,
@@ -320,7 +320,7 @@ a.card:focus-visible .card-cta {
 .card.is-soon {
   color: var(--ink-soft);
   cursor: default;
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
 .card.is-soon .card-cta {
@@ -385,6 +385,7 @@ a.card:focus-visible .card-cta {
   position: sticky;
   top: 0;
   z-index: 5;
+  background: var(--kraft);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   padding: 12px 0;
@@ -437,11 +438,11 @@ a.card:focus-visible .card-cta {
 }
 
 .recipe:nth-of-type(odd) {
-  background: white;
+  background: var(--paper-light);
 }
 
 .recipe:nth-of-type(even) {
-  background: white;
+  background: var(--kraft);
 }
 
 .recipe-head {
@@ -474,6 +475,24 @@ a.card:focus-visible .card-cta {
 
 .recipe-head h2 {
   font-size: clamp(1.4rem, 3vw, 1.9rem);
+}
+
+.recipe-image {
+  display: block;
+  width: min(100%, 760px);
+  margin: 0 auto clamp(28px, 4vw, 40px);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(21, 91, 22, 0.1);
+}
+
+.recipe-image img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  height: auto;
 }
 
 .recipe-body {
@@ -597,5 +616,10 @@ a.card:focus-visible .card-cta {
 
   .recipe {
     padding: 40px 0;
+  }
+
+  .recipe-image {
+    width: 100%;
+    border-radius: 14px;
   }
 }
