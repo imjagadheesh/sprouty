@@ -547,6 +547,16 @@ a.card:focus-visible .card-cta {
   gap: 14px;
 }
 
+.method ol + h3 {
+  margin-top: 28px;
+}
+
+.ingredients h4 {
+  margin: 22px 0 12px;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
 .method li {
   counter-increment: step;
   position: relative;

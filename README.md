@@ -32,6 +32,20 @@ HTTP_PORT=8090 IMAGE_TAG=2026-09-06 docker compose up -d --build
 HTTP_PORT=127.0.0.1:8080 docker compose up -d --build
 ```
 
-5. Verify `https://sprouty.store/`, `/moong.html`, and `/healthz` after deployment.
+5. Verify `https://sprouty.store/`, `/moong`, `/black-channa`, `/cow-peas`, and `/healthz` after deployment.
 
 Stop the service with `docker compose down`.
+
+## Local subdirectory hosting
+
+When the repository is served from `/var/www/html`, open
+`http://localhost/sprouty/black-channa`. The server redirects to the trailing-slash
+directory page, with no custom route configuration needed. Recipe content lives
+in `black-channa/index.html`; `black-channa.html` forwards older links there.
+
+Cowpeas recipes use the same directory structure at `cow-peas/index.html`.
+Open `http://localhost/sprouty/cow-peas` locally or `/cow-peas` at the site root.
+
+Moong recipes live in `moong/index.html`, available at
+`http://localhost/sprouty/moong` locally or `/moong` at the site root.
+Existing `moong.html` links forward to `moong/`.
