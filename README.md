@@ -32,7 +32,7 @@ HTTP_PORT=8090 IMAGE_TAG=2026-09-06 docker compose up -d --build
 HTTP_PORT=127.0.0.1:8080 docker compose up -d --build
 ```
 
-5. Verify `https://sprouty.store/`, `/moong`, `/black-channa`, `/cow-peas`, and `/healthz` after deployment.
+5. Verify `https://sprouty.store/`, `/moong`, `/black-channa`, `/cow-peas`, `/mixed-sprouts`, and `/healthz` after deployment.
 
 Stop the service with `docker compose down`.
 
@@ -49,3 +49,6 @@ Open `http://localhost/sprouty/cow-peas` locally or `/cow-peas` at the site root
 Moong recipes live in `moong/index.html`, available at
 `http://localhost/sprouty/moong` locally or `/moong` at the site root.
 Existing `moong.html` links forward to `moong/`.
+
+Mixed sprouts recipes live in `mixed-sprouts/index.html`, available at
+`http://localhost/sprouty/mixed-sprouts` locally or `/mixed-sprouts` at the site root.
